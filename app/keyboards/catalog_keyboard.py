@@ -9,12 +9,6 @@ def catalog_kb(url: str) -> InlineKeyboardMarkup:
         [
             InlineKeyboardButton(text="На сайт",
                                  url=url)
-        ],
-        [
-            InlineKeyboardButton(text="←",
-                                 callback_data="previous_product"),
-            InlineKeyboardButton(text="→",
-                                 callback_data="next_product")
         ]
     ])
 
