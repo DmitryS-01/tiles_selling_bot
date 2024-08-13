@@ -14,19 +14,21 @@ class Tile:
         Tile.assortment.append(self)
 
 
+# сначала идет выбор по цвету, затем уже выбирается размер плитки
+# (предоставляется выбор только доступных размеров этого цвета)
+# TODO реализовать возможность выбирать сначала размер, потом цвет
 def get_all_types_of_colors() -> list[str]:
     tiles_list = sorted(set([tile.color for tile in Tile.assortment])) + ["Any"]
     return tiles_list
 
 
-# сначала идет выбор по цвету, затем уже выбирается размер плитки
-# (предоставляется выбор только доступных размеров этого цвета)
-# TODO реализовать возможность выбирать сначала размер, потом цвет
 def get_all_types_of_dimensions(color: str) -> list[str]:
-    tiles_list = sorted(set([tile.dimensions for tile in Tile.assortment if (color == "Any" or tile.color == color)])) + ["Any"]
+    tiles_list = sorted(
+        set([tile.dimensions for tile in Tile.assortment if (color == "Any" or tile.color == color)])) + ["Any"]
     return tiles_list
 
 
+# Any - любые значения
 def get_tiles(*, color: str, dimensions: str) -> list[Tile]:
     tiles_list = sorted([tile for tile in Tile.assortment if (dimensions == "Any" or tile.dimensions == dimensions) and
                          (color == "Any" or tile.color == color)], key=lambda tile: tile.name)
